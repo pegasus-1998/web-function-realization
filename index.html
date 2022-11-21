@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web-function-realization</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <base target="_blank" />
+    <style>
+        .title-text {
+            text-align: center;
+            margin: 60px 0;
+            color: #000;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .container .item {
+            cursor: pointer;
+            width: 150px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 4px;
+            border: 1px solid #666;
+            transition: transform .5s ease;
+        }
+
+        .container .item:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title-text">Use html css js to achieve various effects</h1>
+    <div class="container">
+        <a href="./pages/swiper/swiper.html" class="item">swiper</a>
+        <a href="./pages/button/button.html" class="item">button</a>
+    </div>
+</body>
+
+</html>

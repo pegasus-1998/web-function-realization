@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>swiper</title>
+    <style>
+        :root {
+            --theme-color: #1989fa;
+        }
+
+        body {
+            background: #000;
+        }
+
+        .swiper {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 700px;
+            height: 468px;
+            margin: auto;
+            border: 5px solid var(--theme-color);
+            background-image: url('../../images/swiper/swiper01.jpg');
+            background-size: 100% 100%;
+        }
+
+        .swiper img {
+            width: 25px;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--theme-color);
+        }
+
+        .left-btn {
+            left: 0;
+        }
+
+        .right-btn {
+            right: 0;
+            transform: rotate(180deg);
+        }
+
+        .circles {
+            position: absolute;
+            display: flex;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .circles .cir-item {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--theme-color);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .circles .current {
+            background: var(--theme-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper">
+        <div class="left-btn btn">
+            <img src="../../images/icon/left.png" />
+        </div>
+        <div class="right-btn btn">
+            <img src="../../images/icon/left.png" />
+        </div>
+        <div class="circles">
+            <span class="cir-item current"></span>
+            <span class="cir-item"></span>
+            <span class="cir-item"></span>
+            <span class="cir-item"></span>
+            <span class="cir-item"></span>
+        </div>
+    </div>
+    <script>
+        let timer = null
+        let currentIdx = 0
+        let handlerTime = 2500
+        const urls = [
+            '../../images/swiper/swiper01.jpg',
+            '../../images/swiper/swiper02.jpg',
+            '../../images/swiper/swiper03.jpg',
+            '../../images/swiper/swiper04.jpg',
+            '../../images/swiper/swiper05.jpg'
+        ]
+        const swiperEl = document.querySelector('.swiper')
+        const leftBtn = document.querySelector('.left-btn')
+        const rightBtn = document.querySelector('.right-btn')
+        const cirItems = document.querySelectorAll('.cir-item')
+        loadSerInva()
+        swiperEl.addEventListener('mouseenter', () => clearInterval(timer))
+        swiperEl.addEventListener('mouseleave', () => {
+            clearInterval(timer)
+            loadSerInva()
+        })
+        cirItems.forEach((item, idx) => {
+            item.addEventListener('click', function () {
+                clearInterval(timer)
+                currentIdx = idx
+                baseHandler()
+                loadSerInva()
+            })
+        })
+        leftBtn.addEventListener('click', function () {
+            clearInterval(timer)
+            currentIdx--
+            baseHandler()
+            loadSerInva()
+        })
+        rightBtn.addEventListener('click', function () {
+            clearInterval(timer)
+            currentIdx++
+            baseHandler()
+            loadSerInva()
+        })
+        function baseHandler() {
+            if (currentIdx >= urls.length) {
+                currentIdx = 0
+            }
+            if (currentIdx < 0) {
+                currentIdx = urls.length - 1
+            }
+            cirItems.forEach(item => item.className = 'cir-item')
+            cirItems[currentIdx].className = 'cir-item current'
+            swiperEl.style.backgroundImage = `url(${urls[currentIdx]})`
+        }
+        function loadSerInva() {
+            timer = setInterval(() => {
+                currentIdx++
+                baseHandler()
+            }, handlerTime)
+        }
+    </script>
+</body>
+
+</html>

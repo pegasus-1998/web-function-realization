@@ -1,0 +1,62 @@
+:root {
+    --theme-font-color: #6b7184;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    color: var(--theme-font-color);
+    padding-top: 30px;
+    font-size: 22px;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+    border: none;
+}
+
+a,
+button {
+    color: inherit;
+    font-size: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.flear-float::after {
+    display: block;
+    content:'';
+    clear: both;
+}
+
